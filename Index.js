@@ -1,8 +1,17 @@
 "use strict";
 const path = require("path");
-
+const path = require("path");
 const express = require("express");
-const app = express();
+const { request } = require("http");
+const app = new express();
+app.use(express.static("public"));
+app.get("/", (request, response) => {
+  response.sendFile(path.resolve(__dirname, "pages/index.html"));
+});
+app.listen(4000, () => {
+  console.log("app listening on port 4000");
+});
+/*const app = express();
 app.use(express.static("public"));
 
 app.get("/", (request, response) => {
